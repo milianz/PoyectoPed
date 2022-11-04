@@ -1,0 +1,6 @@
+EQUIPO          W           L           CONFERENCIA
+
+Heats           6           2           Este
+Lakers          7           1           Oeste
+Bulls           4           4           Este
+Celtics         3           5           Oeste

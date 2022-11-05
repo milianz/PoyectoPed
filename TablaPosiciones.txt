@@ -1,6 +1,4 @@
-EQUIPO          W           L           CONFERENCIA
-Bucks           100         0           Este
-Heats           23          2           Este
-Lakers          72          1           Oeste
-Bulls           34          4           Este
-Celtics         12          5           Oeste
+
+bucks		12	3	este
+lakers		32	4	oeste
+Heat		45	32	este

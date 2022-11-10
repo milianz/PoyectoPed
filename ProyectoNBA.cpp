@@ -50,7 +50,6 @@ void mostarLista(Nodo *list){
     }
 }
 void clearList(Nodo *&list){
-  
 }
 
 void case1(){
@@ -166,6 +165,8 @@ int main(){
         break;
         case 4:
                 buscarEquipo();
+        break;
+        case 0:
         break;
         default:
                 cout<<"Esa opcion no extiste:(, favor degite una correcta"<<endl;

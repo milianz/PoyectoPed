@@ -73,7 +73,7 @@ int CartasJugador()
     int numero;
     int carta = 0, puntosJugador = 0, as = 0;
     
-    carta = Random(1, 11);
+    carta = Random(1, 12);
     //validando el valor de 1.
     if(carta == 1)
     {
@@ -144,7 +144,7 @@ int CartasJugador()
    cout<<endl;
         
     }
-    if(carta==11){
+    if(carta==12){
         //carta 11 igual a los comodines que hagarra de alphabet 
         srand(time(NULL));
         string alphabet = "JQK";
@@ -157,7 +157,7 @@ int CartasJugador()
     }
     else
     {
-        //Si el numero generado es mayor que 10 su valor sera 10.
+        //Si el numero generado es mayor qsue 10 su valor sera 10.
         if(carta > 10)
         {
             carta = 10;

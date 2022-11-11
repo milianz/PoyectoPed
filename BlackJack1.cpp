@@ -29,55 +29,122 @@ static bool first = true;
 return min + rand() % (( max + 1 ) - min);
 }
 
-//Funcion para calcular los puntos de la maquina.
-int CartasMaquina(int valor)
-{
-    int carta = 0, puntosMaquina = 0;
-
-    while(valor>puntosMaquina && puntosMaquina<21)
+int CartasMaquina2(){
+    int numero;
+    int carta = 0, puntosMaquina = 0, as = 0;
+    int comodin=11;
+    int comodin2=10;
+    carta = Random(1, 12);
+    //validando el valor de 1.
+    if(carta == 1)
     {
-        //Generando un valor aleatorio de 1 a 11.
-        carta = Random(1, 11); 
+       // cout << "\n la Maquina Obtuvo un AS. Que valor desea asignarle? 1 || 11" << endl;
+        as=Random(1,2);
         
-        //Validando el valor de 1
-        if(carta == 1)
+        switch (as)
         {
-            puntosMaquina += 11;
-            if(puntosMaquina > 21)
-            {
-            puntosMaquina += 1;
-            }
-            carta = 0;
-        }
-        //Si el numero generado es mayor que 10 su valor sera 10.
-        if (carta > 10)
-        {
-            carta = 10;
-        }
+        case 1:
+            carta = 1;
+            break;
 
-        //Validar si la maquina se paso de puntos.
-        if(puntosMaquina > 21)
-        {
-            cout << "\nVictoria! la maquina se paso de puntos."<<endl;
-            cout << "Tu puntuacion: " << valor << " VS " << "Puntuacion de la maquina: " << puntosMaquina << endl;
-            cout << "\n";
-            exit(1);
-        } 
+        case 2:
+            carta = comodin;
+            break;
+
+        default:
+            //cout << "El valor solo puede ser 1 u 11" << endl;
+            break;
+        }
     }
-    return puntosMaquina;
-}
+    if(carta==2){
+    //cout<<"la carta de la maquina es 2";
+    //NombreCartA();
+    //cout<<endl;
+    }
+     if(carta==3){
+        //cout<<"la carta de la maquina es 3 ";
+        //NombreCartA();
+        //cout<<endl;
+        
+    } if(carta==4){
+        //cout<<"la carta de la maquina es 4 ";
+   
+        //NombreCartA();
+   cout<<endl;
+    }
+     if(carta==5){
+        //cout<<"la carta de la maquina es 5";
+      
+        //NombreCartA();
+   cout<<endl;
+    } 
+    if(carta==6){
+        //cout<<"la carta de la maquina es 6";
+   
+        //NombreCartA();
+   cout<<endl;
+        
+    } 
+    if(carta==7){
+        //cout<<"la carta de la maquina es 7 ";
+  
+        //NombreCartA();
+   cout<<endl;
+    } 
+    if(carta==8){
+        //cout<<"la carta de la maquina es 8";
+  
+        //NombreCartA();
+   cout<<endl;
+    } 
+    if(carta==9){
+        //cout<<"la carta de la maquina es 9 ";
 
+        //NombreCartA();
+   cout<<endl;
+        
+    } 
+    if(carta==10){
+        //cout<<"la carta de la maquina es 10";
+        //NombreCartA();
+   cout<<endl;
+        
+    }
+    if(carta==12){
+        //carta 11 igual a los comodines que hagarra de alphabet 
+
+int resta;
+      resta=carta-2;  
+        //srand(time(NULL));
+        //string alphabet = "JQK";
+        //char ch = alphabet[rand() % alphabet.size()];
+        //cout << "Obtuvo "<<ch;
+        //NombreCartA();
+        //cout<<endl;
+        //cout<<"Y el valor de esa carta es 10"<<endl;*/
+        return resta;
+
+    }
+    puntosMaquina += carta;
+
+    return puntosMaquina;
+
+}
 //Funcion para calcular los puntos del jugador.
 int CartasJugador()
 {
     int numero;
     int carta = 0, puntosJugador = 0, as = 0;
+    int comodin=11;
+    int comodin2=10;
     
-    carta = Random(1, 11);
+    carta = Random(1, 12);
     //validando el valor de 1.
     if(carta == 1)
     {
-        cout << "\nObtuvo un AS. Que valor desea asignarle? 1 || 11" << endl;
+        cout << "\nObtuvo un AS";
+        NombreCartA();
+        cout<<"Que valor desea asignarle? 1 || 11" << endl;
         cout << "Valor: ";
         cin >> as;
         
@@ -88,7 +155,7 @@ int CartasJugador()
             break;
 
         case 11:
-            carta = 11;
+            carta = comodin;
             break;
 
         default:
@@ -144,26 +211,22 @@ int CartasJugador()
    cout<<endl;
         
     }
-    if(carta==11){
-        //carta 11 igual a los comodines que hagarra de alphabet 
+    if (carta==11){
+
+    }
+    if(carta==12){
+        //carta 11 igual a los comodines que hagarra de alphabet
+        int resta; 
+        resta=carta-2; 
         srand(time(NULL));
         string alphabet = "JQK";
         char ch = alphabet[rand() % alphabet.size()];
-        cout << "\nObtuvo "<<ch<< endl;
+        cout << "Obtuvo "<<ch;
         NombreCartA();
         cout<<endl;
         cout<<"Y el valor de esa carta es 10"<<endl;
-
+        return resta;
     }
-    else
-    {
-        //Si el numero generado es mayor que 10 su valor sera 10.
-        if(carta > 10)
-        {
-            carta = 10;
-        }
-    }
-    
     puntosJugador += carta;
 
     return puntosJugador;
@@ -215,7 +278,7 @@ void Juego()
     cin >> continuar;
     char opc;
     int opc2;
-    int valor = 0, puntosMaq;
+    int valor = 0, puntosMaq, valor2=0;
     if(continuar == 1)
     {
        cout<<"Desea Jugar contra la maquina o con amigos:\n";
@@ -234,34 +297,71 @@ void Juego()
 
                         if(opc == 's' || opc == 'S')
                         {
+                            valor2+=CartasMaquina2();
+                            //cout<<"Puntos de la maquina:"<< valor2<<"."<<endl;
                             valor += CartasJugador();
                             cout << "Puntos actuales: " << valor << "." << endl; 
 
                         }
-                        if(valor > 21)
+                        
+                        
+                        if(valor2 == 21)
                         {
-                            cout << "\nDerrota! Excedio 21 puntos." << endl;
+                            system("cls");
+                     cout << "|************************************************************|" << endl;
+                     cout << "|*************** Derrota! Gano la Maquina *******************|" << endl;
+                     cout << "|                         " <<valor2<<"                      |"<<endl;
+                     cout << "|************************************************************|" << endl;
                             cout << "\n";
                             exit(1);
                         }
-
+                        if(valor2 > 21 && valor<21)
+                        {
+                            system("cls");
+                     cout << "|************************************************************|" << endl;
+                     cout << "|********* Ganaste la maquina Excedio 21 puntos. ************|" << endl;
+                     cout << "|              puntos de la maquina" <<valor2<<"             |"<<endl;
+                     cout << "|************************************************************|" << endl;
+                            cout << "\n";
+                            exit(1);
+                        }
+                        if(valor > 21)
+                        {
+                            system("cls");
+                     cout << "|************************************************************|" << endl;
+                     cout << "|*************** Derrota! Excedio 21 puntos. ****************|" << endl;
+                     
+                     cout << "|************************************************************|" << endl;
+                            cout << "\n";
+                            exit(1);
+                        }
+                        if(valor==21){
+                            system("cls");
+                        cout << "|************************************************************|" << endl;
+                        cout << "|********* Victoria!!!!!! tu puntuacion es de 21 ************|" << endl;
+                        cout << "|************************************************************|" << endl;
+                            cout << "\n";
+                            exit(1);
+                        }
                         cout << "\n";
                         system ("pause");
+                        
 
                     } while (opc == 's' || opc == 'S');
 
-                        system("cls");
-                        if(valor <= 21)
-                        {
-                            puntosMaq = CartasMaquina(valor);
-                        }
-                        if(puntosMaq > valor || puntosMaq == valor)
-                        {
-                            cout << "\nDerrota! La maquina tiene mayor puntuacion." << endl;
-                            cout << "Tu puntuacion: " << valor << " VS " << "Puntuacion de la maquina: " << puntosMaq << endl;
+                            system("cls");
+                            cout << "|************************************************************|" << endl;
+                            cout << "|                                                            |" << endl;
+                            cout << "|****Tu puntuacion: "<< valor << " VS " << "Puntuacion de la maquina: " << valor2<<"*******|"<<endl;
+                            cout << "|                                                            |" << endl;
+                            cout << "|************************************************************|" << endl;
                             cout << "\n";
-                        }
-                }
+                            if(valor>valor2){
+                                cout<<"ganaste";
+                            }
+                            if(valor<valor2){
+                                cout<<"gana la maquina";
+                            }
     else if (opc2==2)
     {
         cout<<"En proceso.."<<endl;
@@ -274,7 +374,7 @@ void Juego()
         cout<<"no existe";
     }
 }
-
+}
 int main (){
 Juego();
 return 0;

@@ -29,44 +29,6 @@ static bool first = true;
 return min + rand() % (( max + 1 ) - min);
 }
 
-//Funcion para calcular los puntos de la maquina.
-/*int CartasMaquina(int valor)
-{
-    int carta = 0, puntosMaquina = 0;
-
-    while(valor>puntosMaquina && puntosMaquina<21)
-    {
-        //Generando un valor aleatorio de 1 a 11.
-        carta = Random(1, 11); 
-        
-        //Validando el valor de 1
-        if(carta == 1)
-        {
-            puntosMaquina += 11;
-            if(puntosMaquina > 21)
-            {
-            puntosMaquina += 1;
-            }
-            carta = 0;
-        }
-        //Si el numero generado es mayor que 10 su valor sera 10.
-        if (carta > 10)
-        {
-            carta = 10;
-        }
-
-        //Validar si la maquina se paso de puntos.
-        if(puntosMaquina > 21)
-        {
-            cout << "\nVictoria! la maquina se paso de puntos."<<endl;
-            cout << "Tu puntuacion: " << valor << " VS " << "Puntuacion de la maquina: " << puntosMaquina << endl;
-            cout << "\n";
-            exit(1);
-        } 
-    }
-    return puntosMaquina;
-}
-*/
 int CartasMaquina2(){
     int numero;
     int carta = 0, puntosMaquina = 0, as = 0;

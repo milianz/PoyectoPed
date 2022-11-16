@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <cstdlib>
 #include <time.h>
-#include<windows.h>
+#include <windows.h>
 #include <iomanip>
 #include <ctime>
 using namespace std;
@@ -483,7 +483,7 @@ void Multijugador()
             system("cls");
             cout << "|************************************************************|" << endl;
             cout << "|**************    EMPATE! No hay ganador.     **************|" << endl;
-            cout << "|              Puntaje final:    " <<valor2<<" VS "<<valor1<<"                  |"<<endl;
+            cout << "|              Puntaje final:    " <<valor2<<" VS "<<valor1<<"                   |"<<endl;
             cout << "|************************************************************|" << endl;
             cout << "\n";
             exit(1);
@@ -622,7 +622,7 @@ void Multijugador()
             system("cls");
             cout << "|************************************************************|" << endl;
             cout << "|**************    EMPATE! No hay ganador.     **************|" << endl;
-            cout << "|              Puntaje final:    " <<valor2<<" VS "<<valor1<<"                  |"<<endl;
+            cout << "|              Puntaje final:    " <<valor2<<" VS "<<valor1<<"                   |"<<endl;
             cout << "|************************************************************|" << endl;
             cout << "\n";
             exit(1);
@@ -630,7 +630,6 @@ void Multijugador()
         }
     }
 }
-
 
 //bienvenida Actualizada
 void PantallaDeCarga(){
@@ -665,7 +664,6 @@ for (LCounter= 0; LCounter<50; LCounter++){
     cout << "|"<<setw(55)<<LBar<<"     |"<<endl;
     cout << "|************************************************************|";
 }
-
 
 }
 

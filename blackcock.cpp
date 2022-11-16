@@ -135,7 +135,7 @@ void imprimiendo_mazo( const Mazo& mazo){
 int imprimir_carta(const Carta& carta){
 int cartax=0,puntosJugador=0,as=0;
 int numero;
-string valor,tipo;
+string tipo;
 if (carta.tipo==0){
     tipo="Corazones";
 }
@@ -204,13 +204,6 @@ cout << "\nObtuvo un K de "<<tipo;
 puntosJugador+=cartax;
 return puntosJugador;
 }
-
-
-string tipoCarta(const Carta& carta){
-string tipo;
-
-return tipo;
-}
 void barajear_mazo(Mazo& mazo){
 srand( time(NULL));
 Mazo barajeado;
@@ -250,15 +243,17 @@ int print_hands(const vector<Carta>& hand,string player){
         valor+=imprimir_carta(c);
     }
     cout<<endl<<"La suma de sus cartas es: "<<valor<<endl;
+    
     if(valor > 21)
             {
+                system("pause");
                 system("cls");
                 cout << "|************************************************************|" << endl;
                 cout << "|*************** Derrota! Excedio 21 puntos. ****************|" << endl; 
                                    if(player==aux1){
-                cout << "|***************Gana "<<aux2<<" *****************************|"<<endl;
+                cout << "|***************Gana "<<aux2<<"********************************|"<<endl;
                                    }else{
-                cout << "|***************Gana "<<aux1<<" *****************************|"<<endl;
+                cout << "|***************Gana "<<aux1<<" *******************************|"<<endl;
                                    }
                 cout << "|************************************************************|" << endl;
                 cout << "\n";
@@ -267,6 +262,7 @@ int print_hands(const vector<Carta>& hand,string player){
 
             if(valor==21)
             {
+                system("pause");
                 system("cls");
                 cout << "|************************************************************|" << endl;
                 cout << "|********* Victoria!!!!!! la puntuacion es de 21 ************|" << endl;

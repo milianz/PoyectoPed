@@ -13,16 +13,19 @@ enum Valor{ as, dos, tres, cuatro, cinco, seis, siete, ocho, nueve, diez, jack, 
         //  0    1    2      3       4     5     6      7     8      9     10    11    12
 enum Tipo{ Corazones, Diamantes, Picas, Treboles};
         //     0          1        2      3
+
 struct Carta{
     Valor valor;
     Tipo tipo;
     int num_tipos=4;
     int num_valores=13;
 };
+
 struct Mazo{
     vector <Carta> cartas;
     int max_cartas=52;
 };
+
 //declarando Funciones.
 void PantallaDeCarga();
 void creando_mazo(Mazo&);
@@ -31,24 +34,30 @@ int imprimir_carta(const Carta&);
 void barajear_mazo(Mazo&);
 bool repartir_cartas(Mazo&, vector<Carta>&, vector<Carta>&, int);
 int print_hands(const vector<Carta>&, string);
+bool repartir_cartas1(Mazo &mazo, vector<Carta> &jugador, int tirada);
+int print_hands1(const vector<Carta> &hand);
 void Juego();
+
 //inicio del main.
-int main (){
-Juego();
-return 0;
+int main ()
+{
+    Juego();
+
+    return 0;
 }
 //fin del main.
 
 //haciendo las funciones.
-void PantallaDeCarga(){
-char LCharacter= char(3);
-char LBar[51]={' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',
-' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',
-' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',
-' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',
-' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',0};
-int LCounter;
-Sleep(1000);
+void PantallaDeCarga()
+{
+    char LCharacter= char(3);
+    char LBar[51]={' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',
+    ' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',
+    ' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',
+    ' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',
+    ' ',' ',' ',' ',' ',' ',' ',' ',' ',' ',0};
+    int LCounter;
+    Sleep(1000);
     for (LCounter= 0; LCounter<50; LCounter++){
         LBar[LCounter]=LCharacter;
         Sleep(100);
@@ -72,71 +81,115 @@ Sleep(1000);
         cout << "|************************************************************|";
     }
 }
-void Juego(){
-vector <Carta> jugador;
-vector <Carta> maquina;
-Mazo mi_mazo;
-int valor1 = 0, valor2 = 0;
-string str1="humano";
-string str2="maquina";
-creando_mazo(mi_mazo);
-barajear_mazo(mi_mazo);
+
+
+void Juego()
+{
+    vector <Carta> jugador;
+    vector <Carta> maquina;
+    Mazo mi_mazo;
+
+    int valor1 = 0, valor2 = 0;
+    string str1="humano";
+    string str2="maquina";
+
+    creando_mazo(mi_mazo);
+    barajear_mazo(mi_mazo);
     int continuar = 0,opc2=0;
+
     system ("cls");
     PantallaDeCarga();
+
     cout << "\nDesea Jugar? 1||Si 0||No." << endl;
-    cout << "Opcion->";
+    cout << "Opcion-> ";
     cin >> continuar;
+    
     char opc;
-    if(continuar = 1)
+
+    system ("cls");
+    if(continuar ==1)
     {
-    cout<<"Desea Jugar contra la maquina o con amigos:\n";
-    cout<<"1- Maquina.\n";
-    cout<<"2- Amigos.\n";
-    cout << "Opcion->";
-    cin >> opc2;
-    if(opc2=1)
-    {
-        do{   
-    system("cls");
-    cout << "Desea pedir una carta? s||Si n||No" << endl;
-    cout << "-> ";
-    cin >> opc;
-    if(opc == 's' || opc == 'S'){
-            repartir_cartas(mi_mazo,jugador,maquina,1);
-            print_hands(jugador,str1);
-            cout<<"------------------carta del Jugador----------------------"<<endl;
-            system("pause");
-            cout<<"carta de la maquina: \n";
-            print_hands(maquina,str2);
-            cout<<"------------------carta del Maquina----------------------"<<endl;
-            system("pause");
-    }
-        } while (opc == 's' || opc == 'S');
+        cout<<"Desea jugar contra la maquina o en solitario?\n";
+        cout<<"1- Maquina.\n";
+        cout<<"2- Jugar solo.\n";
+        cout << "Opcion-> ";
+        cin >> opc2;
+        if(opc2==1)
+        {
+            do
+            {   
+                system("cls");
+                cout << "Desea pedir una carta? s||Si n||No" << endl;
+                cout << "-> ";
+                cin >> opc;
+
+                if(opc == 's' || opc == 'S')
+                {
+                    repartir_cartas(mi_mazo,jugador,maquina,1);
+                    print_hands(jugador,str1);
+                    cout<<"------------------carta del Jugador----------------------"<<endl;
+                    system("pause");
+                    cout<<"carta de la maquina: \n";
+                    print_hands(maquina,str2);
+                    cout<<"------------------carta del Maquina----------------------"<<endl;
+                    system("pause");
+                }
+            } 
+            while (opc == 's' || opc == 'S');
        
-    }
+        }
+        if (opc2==2)
+        {
+            do
+            {
+                system("cls");
+                cout << "Desea pedir una carta? s||Si n||No" << endl;
+                cout << "-> ";
+                cin >> opc;
+
+                if (opc == 's' || opc == 'S')
+                {
+                    repartir_cartas1(mi_mazo, jugador, 1);
+                    print_hands1(jugador);
+                    cout << "------------------carta del Jugador----------------------" << endl;
+                    system("pause");
+                }
+            } 
+            while (opc == 's' || opc == 'S');
+        }
+    }  
 }
-}
-void creando_mazo(Mazo& mazo){
+
+void creando_mazo(Mazo& mazo)
+{
     Carta carta;
-    for(int tipo=0;tipo<carta.num_tipos;tipo++){
-        for(int valor=0; valor<carta.num_valores;valor++){
+
+    for(int tipo=0;tipo<carta.num_tipos;tipo++)
+    {
+        for(int valor=0; valor<carta.num_valores;valor++)
+        {
             carta.tipo=Tipo(tipo);
             carta.valor=Valor(valor);
             mazo.cartas.push_back(carta);
         }
     }
 }
-void imprimiendo_mazo( const Mazo& mazo){
-    for(Carta c:mazo.cartas){
+
+void imprimiendo_mazo( const Mazo& mazo)
+{
+    for(Carta c:mazo.cartas)
+    {
         imprimir_carta(c);
     }
 }
+
 int imprimir_carta(const Carta& carta){
 int cartax=0,puntosJugador=0,as=0;
 int numero;
 string valor,tipo;
-if (carta.tipo==0){
+
+if (carta.tipo==0)
+{
     tipo="Corazones";
 }
 if (carta.tipo==1){
@@ -205,30 +258,28 @@ puntosJugador+=cartax;
 return puntosJugador;
 }
 
-
-string tipoCarta(const Carta& carta){
-string tipo;
-
-return tipo;
-}
-void barajear_mazo(Mazo& mazo){
-srand( time(NULL));
-Mazo barajeado;
-int num;
-num=rand();
-for (int i = 0; i <num ; i++)
+void barajear_mazo(Mazo& mazo)
 {
-    while(!mazo.cartas.empty()){
-    size_t rand_index = rand() % mazo.cartas.size();
-    barajeado.cartas.push_back(mazo.cartas[rand_index]);
-    mazo.cartas.erase(mazo.cartas.begin() + rand_index);
+    srand( time(NULL));
+    Mazo barajeado;
+    int num;
+    num=rand();
+    for (int i = 0; i <num ; i++)
+    {
+        while(!mazo.cartas.empty())
+        {
+        size_t rand_index = rand() % mazo.cartas.size();
+        barajeado.cartas.push_back(mazo.cartas[rand_index]);
+        mazo.cartas.erase(mazo.cartas.begin() + rand_index);
+        }
     }
+    mazo=barajeado;
 }
 
-mazo=barajeado;
-}
-bool repartir_cartas(Mazo& mazo, vector<Carta>& jugador, vector<Carta>& maquina, int tirada){
-    if(mazo.cartas.size()<2*tirada){
+bool repartir_cartas(Mazo& mazo, vector<Carta>& jugador, vector<Carta>& maquina, int tirada)
+{
+    if(mazo.cartas.size()<2*tirada)
+    {
         return false;
     }
     
@@ -239,44 +290,142 @@ bool repartir_cartas(Mazo& mazo, vector<Carta>& jugador, vector<Carta>& maquina,
         maquina.push_back(mazo.cartas[0]);
         mazo.cartas.erase(mazo.cartas.begin());
     }
-return true;
+    return true;
 }
-int print_hands(const vector<Carta>& hand,string player){
+
+int print_hands(const vector<Carta>& hand,string player)
+{
     int valor=0;
     string aux1="humano";
     string aux2="maquina";
     system("cls");
-    for(Carta c: hand){
+
+    for(Carta c: hand)
+    {
         valor+=imprimir_carta(c);
     }
     cout<<endl<<"La suma de sus cartas es: "<<valor<<endl;
     if(valor > 21)
-            {
-                system("cls");
-                cout << "|************************************************************|" << endl;
-                cout << "|*************** Derrota! Excedio 21 puntos. ****************|" << endl; 
-                                   if(player==aux1){
-                cout << "|***************Gana "<<aux2<<" *****************************|"<<endl;
-                                   }else{
-                cout << "|***************Gana "<<aux1<<" *****************************|"<<endl;
-                                   }
-                cout << "|************************************************************|" << endl;
-                cout << "\n";
-                exit(1);
-            }
+    {
+        system("cls");
+        cout << "|************************************************************|" << endl;
+        cout << "|*************** Derrota! Excedio 21 puntos. ****************|" << endl; 
+        if(player==aux1)
+        {
+            cout << "|***************Gana "<<aux2<<" ********************************|"<<endl;
+        }
+        else
+        {
+            cout << "|***************Gana "<<aux1<<" ********************************|"<<endl;
+        }
+            cout << "|************************************************************|" << endl;
+            cout << "\n";
+        exit(1);
+    }
 
-            if(valor==21)
-            {
-                system("cls");
-                cout << "|************************************************************|" << endl;
-                cout << "|********* Victoria!!!!!! la puntuacion es de 21 ************|" << endl;
-                            if(player==aux1){
-                cout << "|**********************"<<aux1<<"**************************|"<<endl;
-                                   }else{
-                cout << "|**********************"<<aux2<<"**************************|"<<endl;
-                                   }
-                cout << "|************************************************************|" << endl;
-                cout << "\n";
-                exit(1);
-            }
+    if(valor==21)
+    {
+        system("cls");
+        cout << "|************************************************************|" << endl;
+        cout << "|********* Victoria!!!!!! la puntuacion es de 21 ************|" << endl;
+        if(player==aux1)
+        {
+            cout << "|**********************"<<aux1<<"*****************************|"<<endl;
+        }
+        else
+        {
+            cout << "|**********************"<<aux2<<"*****************************|"<<endl;
+        }
+        cout << "|************************************************************|" << endl;
+        cout << "\n";
+        exit(1);
+    }
+}
+
+bool repartir_cartas1(Mazo &mazo, vector<Carta> &jugador, int tirada)
+{
+    if (mazo.cartas.size() < 2 * tirada)
+    {
+        return false;
+    }
+
+    for (int i = 0; i < tirada; i++)
+    {
+        jugador.push_back(mazo.cartas[0]);
+        mazo.cartas.erase(mazo.cartas.begin());
+    }
+    return true;
+}
+
+int print_hands1(const vector<Carta> &hand)
+{
+    int valor = 0;
+    ;
+    system("cls");
+    for (Carta c : hand)
+    {
+        valor += imprimir_carta(c);
+       
+    }
+    cout << endl
+        << "La suma de sus cartas es: " << valor << endl;
+        system("pause");
+
+    if (valor <= 11)
+    {
+        cout << "La probabilidad que se pase de 21 es: 0%" << endl;
+    }
+    if (valor == 12)
+    {
+        cout << "La probabilidad que se pase de 21 es: 31%" << endl;
+    }
+    if (valor == 13)
+    {
+        cout << "La probabilidad que se pase de 21 es: 39%" << endl;
+    }
+    if (valor == 14)
+    {
+        cout << "La probabilidad que se pase de 21 es: 56%" << endl;
+    }
+    if (valor == 15)
+    {
+        cout << "La probabilidad que se pase de 21 es: 58%" << endl;
+    }
+    if (valor == 16)
+    {
+        cout << "La probabilidad que se pase de 21 es: 62%" << endl;
+    }
+    if (valor == 17)
+    {
+        cout << "La probabilidad que se pase de 21 es: 69%" << endl;
+    }
+    if (valor == 18)
+    {
+        cout << "La probabilidad que se pase de 21 es: 77%" << endl;
+    }
+    if (valor == 19)
+    {
+        cout << "La probabilidad que se pase de 21 es: 85%" << endl;
+    }
+    if (valor == 20)
+    {
+        cout << "La probabilidad que se pase de 21 es: 92%" << endl;
+    }
+    if (valor == 21)
+    {
+        cout << "La probabilidad que se pase de 21 es: 100%" << endl;
+    }
+    if (valor > 21)
+    {
+        cout << "Se paso de 21" << endl;
+    }
+    if(valor==21)
+    {
+        system("cls");
+        cout << "|************************************************************|" << endl;
+        cout << "|********* Victoria!!!!!! la puntuacion es de 21 ************|" << endl;
+        cout << "|************************************************************|" << endl;
+        cout << "\n";
+        exit(1);
+    }
 }

@@ -1,5 +1,0 @@
-
-bucks		12	3	este
-lakers		32	4	oeste
-Heat		45	32	este
-Barcelona		3	1	western

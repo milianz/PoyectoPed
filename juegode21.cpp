@@ -35,8 +35,12 @@ int imprimir_carta(const Carta&);
 void barajear_mazo(Mazo&);
 bool repartir_cartas(Mazo&, vector<Carta>&, vector<Carta>&, int);
 int print_hands(const vector<Carta>&, string);
+
+//Situacion de probabilidad
 bool repartir_cartas1(Mazo &mazo, vector<Carta> &jugador, int tirada);
 int print_hands1(const vector<Carta> &hand);
+
+//El juego.
 void Juego();
 
 //inicio del main.
@@ -98,7 +102,7 @@ void Juego()
     barajear_mazo(mi_mazo);
 
     system ("cls");
-    PantallaDeCarga();
+    //PantallaDeCarga();
 
     cout << "\nDesea Jugar? 1||Si 0||No." << endl;
     cout << "Opcion-> ";
@@ -195,80 +199,93 @@ void imprimiendo_mazo( const Mazo& mazo)
     }
 }
 
-int imprimir_carta(const Carta& carta){
-int cartax=0,puntosJugador=0,as=0;
-int numero;
-string valor,tipo;
-
-if (carta.tipo==0)
+int imprimir_carta(const Carta& carta)
 {
+    int cartax=0,puntosJugador=0,as;
+    int numero;
+    string valor,tipo;
+
+    if (carta.tipo==0)
+    {
     tipo="Corazones";
-}
-if (carta.tipo==1){
-     tipo="Diamantes";
-}
-if (carta.tipo==2){
-     tipo="Picas";
-}
-if (carta.tipo==3){
-    tipo="Treboles";
-}
-if(carta.valor==0){
-cout << "\nObtuvo un AS de "<<tipo;
-cartax=1;
+    }
+    if (carta.tipo==1){
+        tipo="Diamantes";
+    }
+    if (carta.tipo==2){
+        tipo="Picas";
+    }
+    if (carta.tipo==3){
+        tipo="Treboles";
+    }
+    if(carta.valor==0)
+    {
+        cout << "\nObtuvo un AS de "<<tipo;
+        cout << "\nQue valor desea asignarle? 1 || 11" << endl;
+        cout << "\nValor: ";
+        cin >> as;
 
-}
-if(carta.valor==1){
-cout << "\nObtuvo un 2 de "<<tipo;
-cartax=2;
-}
-if(carta.valor==2){
-cout << "\nObtuvo un 3 de "<<tipo;
-cartax=3;
-}
-if(carta.valor==3){
-    cout << "\nObtuvo un 4 de "<<tipo;
-cartax=4;
-}
-if(carta.valor==4){
-    cout << "\nObtuvo un 5 de "<<tipo;
- cartax=5;
-}
-if(carta.valor==5){
-    cout << "\nObtuvo un 6 de "<<tipo;
- cartax=6;
-}
-if(carta.valor==6){
-    cout << "\nObtuvo un 7 de "<<tipo;
- cartax=7;
-}
-if(carta.valor==7){
-    cout << "\nObtuvo un 8 de "<<tipo;
- cartax=8;
-}
-if(carta.valor==8){
-cout << "\nObtuvo un 9 de "<<tipo;
- cartax=9;
-}
-if(carta.valor==9){
-cout << "\nObtuvo un 10 de "<<tipo;
- cartax=10;
-}
-if(carta.valor==10){
-cout << "\nObtuvo un J de "<<tipo;
- cartax=10;
-}
-if(carta.valor==11){
-cout << "\nObtuvo un Q de "<<tipo;
- cartax=10;
-}
-if(carta.valor==12){
-cout << "\nObtuvo un K de "<<tipo;
- cartax=10;}
+        if(as == 1)
+        {
+            cartax = 1;
+        }
+        if (as == 11)
+        {
+            cartax = 11;
+        }
+    }
+    if(carta.valor==1){
+    cout << "\nObtuvo un 2 de "<<tipo;
+    cartax=2;
+    }
+    if(carta.valor==2){
+    cout << "\nObtuvo un 3 de "<<tipo;
+    cartax=3;
+    }
+    if(carta.valor==3){
+        cout << "\nObtuvo un 4 de "<<tipo;
+    cartax=4;
+    }
+    if(carta.valor==4){
+        cout << "\nObtuvo un 5 de "<<tipo;
+    cartax=5;
+    }
+    if(carta.valor==5){
+        cout << "\nObtuvo un 6 de "<<tipo;
+    cartax=6;
+    }
+    if(carta.valor==6){
+        cout << "\nObtuvo un 7 de "<<tipo;
+    cartax=7;
+    }
+    if(carta.valor==7){
+        cout << "\nObtuvo un 8 de "<<tipo;
+    cartax=8;
+    }
+    if(carta.valor==8){
+    cout << "\nObtuvo un 9 de "<<tipo;
+        cartax=9;
+    }
+    if(carta.valor==9){
+        cout << "\nObtuvo un 10 de "<<tipo;
+        cartax=10;
+    }
+    if(carta.valor==10){
+        cout << "\nObtuvo un J de "<<tipo;
+        cartax=10;
+    }
+    if(carta.valor==11){
+        cout << "\nObtuvo un Q de "<<tipo;
+        cartax=10;
+    }
+    if(carta.valor==12)
+    {
+        cout << "\nObtuvo un K de "<<tipo;
+        cartax=10;}
 
-puntosJugador+=cartax;
-return puntosJugador;
-}
+        puntosJugador+=cartax;
+        return puntosJugador;
+    }
 
 void barajear_mazo(Mazo& mazo)
 {

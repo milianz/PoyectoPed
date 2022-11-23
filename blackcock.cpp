@@ -28,6 +28,7 @@ struct Mazo{
 
 //declarando Funciones.
 void PantallaDeCarga();
+void calcularPorcentaje(int& numerador,int& denominador);
 void creando_mazo(Mazo&);
 void imprimiendo_mazo( const Mazo&);
 int imprimir_carta(const Carta&);
@@ -66,7 +67,7 @@ void PantallaDeCarga()
         cout << "|*********** Bienvenido al Juego Blackjack o 21. ************|" << endl;
         cout << "|                                                            |" << endl;
         cout << "|                     ~~~ [REGLAS] ~~~                       |" << endl;
-        cout << "|  -> El valor de los ACES(1) puede ser uno u once.          |" << endl;
+        cout << "|  -> El valor de los ACES(1) puede ser uno                  |" << endl;
         cout << "|  -> La Maquina gana los empates, al menos que tengas 21.   |" << endl;
         cout << "|                                                            |" << endl;
         cout << "|************************************************************|" << endl;
@@ -88,14 +89,13 @@ void Juego()
     vector <Carta> jugador;
     vector <Carta> maquina;
     Mazo mi_mazo;
-
-    int valor1 = 0, valor2 = 0;
+    double den=0, porcentaje=0, car=0;
+    int continuar = 0,opc2=0,acomulador=0;
     string str1="humano";
     string str2="maquina";
 
     creando_mazo(mi_mazo);
     barajear_mazo(mi_mazo);
-    int continuar = 0,opc2=0;
 
     system ("cls");
     PantallaDeCarga();
@@ -148,9 +148,20 @@ void Juego()
                 cin >> opc;
 
                 if (opc == 's' || opc == 'S')
-                {
+                {   
+                    acomulador=acomulador+1;
                     repartir_cartas1(mi_mazo, jugador, 1);
                     print_hands1(jugador);
+                    cout<<endl;
+                    cout<<"ingrese cuantas cartas se pasan de 21->";
+                    cin>>car;
+                    if(car==0){
+                        cout<<"La probabilidad de que se pase de 21 es: 0%"<<endl;
+                    }else{
+                    den=52-acomulador;
+                    porcentaje=(car/den)*100;
+                    cout<<"La probabilidad de que se pase de 21 es: "<<porcentaje<<"%"<<endl;
+                    }
                     cout << "------------------carta del Jugador----------------------" << endl;
                     system("pause");
                 }
@@ -360,65 +371,14 @@ bool repartir_cartas1(Mazo &mazo, vector<Carta> &jugador, int tirada)
 int print_hands1(const vector<Carta> &hand)
 {
     int valor = 0;
-    ;
+    
     system("cls");
     for (Carta c : hand)
     {
         valor += imprimir_carta(c);
-       
+        
     }
-    cout << endl
-        << "La suma de sus cartas es: " << valor << endl;
-        system("pause");
-
-    if (valor <= 11)
-    {
-        cout << "La probabilidad que se pase de 21 es: 0%" << endl;
-    }
-    if (valor == 12)
-    {
-        cout << "La probabilidad que se pase de 21 es: 31%" << endl;
-    }
-    if (valor == 13)
-    {
-        cout << "La probabilidad que se pase de 21 es: 39%" << endl;
-    }
-    if (valor == 14)
-    {
-        cout << "La probabilidad que se pase de 21 es: 56%" << endl;
-    }
-    if (valor == 15)
-    {
-        cout << "La probabilidad que se pase de 21 es: 58%" << endl;
-    }
-    if (valor == 16)
-    {
-        cout << "La probabilidad que se pase de 21 es: 62%" << endl;
-    }
-    if (valor == 17)
-    {
-        cout << "La probabilidad que se pase de 21 es: 69%" << endl;
-    }
-    if (valor == 18)
-    {
-        cout << "La probabilidad que se pase de 21 es: 77%" << endl;
-    }
-    if (valor == 19)
-    {
-        cout << "La probabilidad que se pase de 21 es: 85%" << endl;
-    }
-    if (valor == 20)
-    {
-        cout << "La probabilidad que se pase de 21 es: 92%" << endl;
-    }
-    if (valor == 21)
-    {
-        cout << "La probabilidad que se pase de 21 es: 100%" << endl;
-    }
-    if (valor > 21)
-    {
-        cout << "Se paso de 21" << endl;
-    }
+    cout << "\nLa suma de sus cartas es: " << valor;
     if(valor==21)
     {
         system("cls");

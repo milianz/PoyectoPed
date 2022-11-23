@@ -90,7 +90,7 @@ void Juego()
     vector <Carta> maquina;
     Mazo mi_mazo;
     double den=0, porcentaje=0, car=0;
-    int continuar = 0,opc2=0,acomulador=0;
+    int continuar = 0,opc2=0,contador=0;
     string str1="humano";
     string str2="maquina";
 
@@ -149,7 +149,7 @@ void Juego()
 
                 if (opc == 's' || opc == 'S')
                 {   
-                    acomulador=acomulador+1;
+                    contador=contador+1;
                     repartir_cartas1(mi_mazo, jugador, 1);
                     print_hands1(jugador);
                     cout<<endl;
@@ -157,8 +157,9 @@ void Juego()
                     cin>>car;
                     if(car==0){
                         cout<<"La probabilidad de que se pase de 21 es: 0%"<<endl;
-                    }else{
-                    den=52-acomulador;
+                    }
+                    else{
+                    den = 52-contador;
                     porcentaje=(car/den)*100;
                     cout<<"La probabilidad de que se pase de 21 es: "<<porcentaje<<"%"<<endl;
                     }
@@ -388,4 +389,5 @@ int print_hands1(const vector<Carta> &hand)
         cout << "\n";
         exit(1);
     }
+    
 }
